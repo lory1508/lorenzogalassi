@@ -1,5 +1,5 @@
 <template>
-	<div class="bg-slate-300 bg-opacity-25 p-10 rounded-md border-2 border-solid border-slate-300">
+	<div class="bg-slate-800 p-10 rounded-lg  shadow-lg transition ease-in-out delay-150 duration-300 hover:shadow-slate-700">
 		<slot name="title"></slot>
 		<slot></slot>
 	</div>
