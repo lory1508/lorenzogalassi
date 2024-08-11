@@ -11,7 +11,7 @@
 			}"	
 		/>
 
-		<UAlert class="absolute top-0 w-40 j mt-4 z-50" >
+		<UAlert class="absolute top-0 w-40 j mt-4 z-50 hidden xl:block" >
 			<template #description>
 				<span class="flex justify-center">
 					Cerca con <UKbd value="Cmd + K" class="ml-2" />
@@ -44,6 +44,10 @@
 import { useMouse, useWindowSize } from '@vueuse/core'
 import { computed, ref, watch } from 'vue'
 import Card from '~/components/Card.vue'
+
+definePageMeta({
+  layout: 'noMenu'
+})
 
 const router = useRouter()
 
