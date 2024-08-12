@@ -9,5 +9,9 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: ['@nuxt/ui', "@nuxt/image"]
+  modules: [
+    '@nuxt/ui',
+    "@nuxt/image",
+    '@pinia/nuxt'
+  ]
 })

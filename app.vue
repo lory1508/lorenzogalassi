@@ -13,13 +13,25 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useMagicKeys, whenever } from '@vueuse/core'
+import { useShortcutStore } from '@/stores/shortcut'
 
+const store = useShortcutStore()
+const isOpen = ref(store.showSearchbar)
+
+watch(() => store.showSearchbar, (value) => {
+  console.log('store watcher')
+  isOpen.value = value
+})
+
+watch(() => isOpen.value, (value) => {
+  console.log('is open watcher', value)
+  store.showSearchbar = value
+})
 
 // shortcuts
 const { esc } = useMagicKeys()
-const isOpen = ref(false)
 const keys = useMagicKeys({
   passive: false,
   onEventFired(e) {
@@ -58,9 +70,8 @@ whenever(esc, () => {
 
 
 const toggle = (value = undefined) => {
-  isOpen.value = value != undefined ? value : !isOpen.value
-  // showModal.value = value != undefined ? value : !showModal.value
-  // showInfo.value = showModal.value ? showInfo.value : false
+  store.toggleSearchbar()
+  isOpen.value = store.showSearchbar
 }
 
 const avatar = '/images/lorenzo.jpg'

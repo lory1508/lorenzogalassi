@@ -12,7 +12,9 @@
   "dependencies": {
     "@nuxt/image": "^1.7.0",
     "@nuxt/ui": "^2.18.4",
+    "@pinia/nuxt": "^0.5.3",
     "nuxt": "^3.12.4",
+    "pinia": "^2.2.1",
     "vue": "latest",
     "vue3-spinners": "^1.2.2"
   },
@@ -20,5 +22,8 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.9"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }
