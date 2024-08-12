@@ -1,6 +1,7 @@
 <template>
 	<div class="flex flex-col items-center w-screen h-screen bg-gradient-to-b from-slate-950 to-[#003566] justify-center relative  overflow-hidden">
 		<div 
+			v-if="!loading"
 			class="absolute bg-[#FFD60A] rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none z-10 hidden xl:block"
 			:style="{
 				opacity: opacity,
@@ -11,17 +12,34 @@
 			}"	
 		/>
 
-		<UAlert class="absolute top-0 w-40 j mt-4 z-50 hidden xl:block" >
+		<UAlert v-if="!loading" class="absolute top-0 w-40 j mt-4 z-50 hidden xl:block" >
 			<template #description>
 				<span class="flex justify-center">
 					Cerca con <UKbd value="Cmd + K" class="ml-2" />
 				</span>
 			</template>
 		</UAlert>
+
+		<!-- spinner -->
+		<div
+			class="flex flex-col items-center justify-center gap-2 z-50 p-8 transition-opacity duration-1000 absolute"
+			:class="{ 
+				'opacity-100': loading,
+				'opacity-0': !loading
+			}"
+		>
+			<VueSpinnerOval size="80" color="#FFD60A" />
+		</div>
+		<!-- end spinner -->
+
 		<div 
 			ref="logoRef"
 			:style = "{ maskImage: logoGradient }"
-			class="flex flex-col items-center justify-center z-50 p-8 h-screen"
+			class="flex flex-col items-center justify-center z-50 p-8 h-screen transition-opacity duration-1000 absolute"
+			:class="{ 
+				'opacity-100': !loading,
+				'opacity-0': loading
+			}"
 		>
 			<div class="flex flex-col justify-center items-center">
 				<NuxtImg :src="logo" class="h-40 w-40 transition ease-in-out delay-150 duration-300 hover:scale-110" /> 
@@ -41,8 +59,9 @@
 </template>
 
 <script setup>
+import { VueSpinnerOval } from 'vue3-spinners';
 import { useMouse, useWindowSize } from '@vueuse/core'
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, onMounted } from 'vue'
 import Card from '~/components/Card.vue'
 
 definePageMeta({
@@ -52,6 +71,11 @@ definePageMeta({
 const router = useRouter()
 
 const selected = ref()
+const loading = ref(true)
+onMounted( async () => {
+	// await new Promise(resolve => setTimeout(resolve, 500));
+	loading.value = false
+})
 
 const { x, y } = useMouse()
 const { width, height } = useWindowSize()

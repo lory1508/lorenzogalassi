@@ -1,17 +1,21 @@
 <template>
-  <NuxtLayout>
-    <div class="bg-slate-950 text-slate-50 h-screen w-screen justify-center align-middle items-center flex flex-col">
-      <NuxtPage />
-      <UModal v-model="isOpen">
-        <UCommandPalette ref="commandPaletteRef" :groups="groups" :autoselect="false" @update:model-value="onSelect" />
-      </UModal>
-    </div>
-  </NuxtLayout>
+  <div>
+    <NuxtLoadingIndicator />
+    <NuxtLayout>
+      <div class="text-slate-50">
+        <NuxtPage />
+        <UModal v-model="isOpen">
+          <UCommandPalette ref="commandPaletteRef" :groups="groups" :autoselect="false" @update:model-value="onSelect" />
+        </UModal>
+      </div>
+    </NuxtLayout>
+  </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { useMagicKeys, whenever } from '@vueuse/core'
+
 
 // shortcuts
 const { esc } = useMagicKeys()

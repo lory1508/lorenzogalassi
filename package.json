@@ -13,7 +13,8 @@
     "@nuxt/image": "^1.7.0",
     "@nuxt/ui": "^2.18.4",
     "nuxt": "^3.12.4",
-    "vue": "latest"
+    "vue": "latest",
+    "vue3-spinners": "^1.2.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
