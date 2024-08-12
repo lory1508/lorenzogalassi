@@ -21,12 +21,10 @@ const store = useShortcutStore()
 const isOpen = ref(store.showSearchbar)
 
 watch(() => store.showSearchbar, (value) => {
-  console.log('store watcher')
   isOpen.value = value
 })
 
 watch(() => isOpen.value, (value) => {
-  console.log('is open watcher', value)
   store.showSearchbar = value
 })
 
@@ -91,7 +89,7 @@ const router = useRouter()
 const commandPaletteRef = ref()
 
 const users = [
-  { id: 'lorenzo', label: 'Lorenzo Galassi', href: 'https://github.com/benjamincanac', target: '_blank', avatar: { src: avatar, loading: 'lazy' } },
+  { id: 'lorenzo', label: 'Lorenzo Galassi', href: '/lorenzo', avatar: { src: avatar, loading: 'lazy' } },
 ]
 
 const actions = [

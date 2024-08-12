@@ -62,6 +62,8 @@
 import { VueSpinnerOval } from 'vue3-spinners';
 import { useMouse, useWindowSize } from '@vueuse/core'
 import { computed, ref, watch, onMounted } from 'vue'
+import { routes } from '@/routes'
+
 import Card from '~/components/Card.vue'
 
 definePageMeta({
@@ -92,6 +94,7 @@ const opacity = computed(() => Math.min(
 
 const logoRef = ref()
 const logoGradient = computed(() => {
+	if (width.value <= 1024) return 'none'
 	let rect = logoRef.value?.getBoundingClientRect()
 	const xPos = x.value - (rect?.left ?? 0)
 	const yPos = y.value - (rect?.top ?? 0)

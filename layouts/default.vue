@@ -5,7 +5,6 @@
 		</div>
 		<div class="lg:w-4/5 w-screen p-4 flex flex-col gap-4">
 			<div class="w-full flex flex-row gap-2 justify-between">
-				<UBreadcrumb :links="paths" />
 				<UButton
 					icon="mdi:menu"
 					size="md"
@@ -22,62 +21,15 @@
 	</div>
 </template>
 <script setup>
-import { onMounted, ref } from 'vue';
-import { capitalizeFirstLetter } from '~/utils'
+import { ref } from 'vue';
 import { useShortcutStore } from '@/stores/shortcut'
+import { routes } from '@/routes'
 
-const route = useRoute()
 const store = useShortcutStore()
 
-const avatar = '/images/lorenzo.jpg'
-
-const links = [
-	[{
-    label: 'Chi sono',
-    avatar: {
-      src: avatar
-    },
-  }],
-  [
-	{
-    label: 'Home',
-    icon: 'i-heroicons-home',
-    to: '/'
-  },
-  { 
-		id: 'contact', 
-		label: 'Contattami', 
-		icon: 'mdi:message-fast', 
-		to: '/contact'
-	},
-  { 
-		id: 'portfolio', 
-		label: 'Portfolio', 
-		icon: 'mdi:image-album', 
-		to: '/portfolio'
-	},
-  { 
-		id: 'services', 
-		label: 'Servizi', 
-		icon: 'mdi:hand-peace', 
-		to: '/services'
-	}]
-]
-
-const paths = ref([{
-  label: 'Home',
-  icon: 'i-heroicons-home',
-  to: '/'
-}])
+const links = ref(routes)
 
 const toggleSearchModal = () => {
 	store.toggleSearchbar()
 }
-
-onMounted(() => {
-	paths.value.push({
-		label: capitalizeFirstLetter(route.name),
-		to: route.path
-	}) 
-})
 </script>
