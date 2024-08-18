@@ -13,15 +13,26 @@
 						<span class="text-2xl ">C</span>iao, sono <i class="text-primary-400"><strong>Lorenzo</strong></i>, uno sviluppatore web appassionato e creativo con una missione chiara: trasformare idee in esperienze digitali straordinarie. La mia storia è intessuta di codice, design e innovazione, e qui condivido con te il mio viaggio nel mondo della creazione web.
 					</span>
 				</div>
-			</div>
 
+			</div>
+			<div class="mt-16 flex flex-col gap-16">
+			</div>
+			
 			<template #footer>
-				<Placeholder class="h-8" />
+				<div>
+					<Socials />
+				</div>
 			</template>
 		</UCard>
 	</div>
 </template>
 
 <script setup>
+import Socials from '~/components/Socials.vue'
+
 const avatar = '/images/lorenzo.jpg'
+
+const clicked = () => {
+	console.log('Clicked')
+}
 </script>
